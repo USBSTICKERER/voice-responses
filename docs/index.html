@@ -18,7 +18,7 @@
       userInput.value = '';
 
       // Send the message to the chatbot
-      fetch('https://echo-chatbot.com/api/echo', {
+      fetch('/api/echo', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message }),
