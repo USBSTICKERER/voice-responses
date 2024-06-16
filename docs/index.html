@@ -4,12 +4,32 @@
   <title>Chatbot Test</title>
 </head>
 <body>
-  <div id="echo-chatbot"></div>
-  <script src="https://unpkg.com/echo-chatbot@latest/dist/echo.min.js"></script>
+  <h1>Echo Chatbot Test</h1>
+  <input id="user-input" type="text" placeholder="Type a message...">
+  <button id="send-btn">Send</button>
+  <div id="chat-log"></div>
   <script>
-    Echo.init({
-      container: '#echo-chatbot',
-      // You can add your own configuration options here
+    const userInput = document.getElementById('user-input');
+    const sendBtn = document.getElementById('send-btn');
+    const chatLog = document.getElementById('chat-log');
+
+    sendBtn.addEventListener('click', () => {
+      const message = userInput.value;
+      userInput.value = '';
+
+      // Send the message to the chatbot
+      fetch('https://echo-chatbot.com/api/echo', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message }),
+      })
+        .then(response => response.json())
+        .then(data => {
+          const responseText = data.response;
+          const responseHTML = `<p><strong>You:</strong> ${message}</p><p><strong>Bot:</strong> ${responseText}</p>`;
+          chatLog.innerHTML += responseHTML;
+        })
+        .catch(error => console.error(error));
     });
   </script>
 </body>
