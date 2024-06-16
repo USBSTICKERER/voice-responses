@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Voice Response</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-    }
-  </style>
+  <title>Chatbot Test</title>
 </head>
 <body>
-  <h1>Converse with me!</h1>
-  <input id="input" type="text" placeholder="Type your question...">
-  <button id="submit">Ask!</button>
-  <audio id="audio" controls></audio>
-  <script src="script.js"></script>
+  <div id="echo-chatbot"></div>
+  <script src="https://unpkg.com/echo-chatbot@latest/dist/echo.min.js"></script>
+  <script>
+    Echo.init({
+      container: '#echo-chatbot',
+      // You can add your own configuration options here
+    });
+  </script>
 </body>
 </html>
